@@ -7,6 +7,7 @@ class TokenSequence extends HasTokenizeStart {
   /// Sequence to match.
   final List<TokenBase> sequence;
 
+  /// Creates a sequence model with ordered [sequence] elements.
   const TokenSequence(String name, this.sequence) : super(name: name);
 
   @override

@@ -15,6 +15,7 @@ class Input {
   /// Zero-based absolute character index of the segment start.
   final int index;
 
+  /// Creates an input segment with source location metadata.
   Input({
     required this.input,
     this.line = 0,
@@ -73,6 +74,7 @@ class Token implements Comparable<Token> {
   /// Character length of [value].
   int get length => value.length;
 
+  /// Creates a token with explicit source span and model metadata.
   const Token({
     required this.startLine,
     required this.endLine,

@@ -1,6 +1,6 @@
 name: tokenizer_parser
 description: A lightweight tokenizer and parser-composition toolkit for Dart, designed to build custom language grammars and structured token streams.
-version: 0.1.2
+version: 0.1.3
 repository: https://github.com/roadroot/tokenizer
 
 environment:

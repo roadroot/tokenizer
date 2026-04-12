@@ -8,6 +8,7 @@ abstract class TokenModel extends TokenBase {
   /// Indicates whether token is a symbol/punctuation.
   final bool isSymbol;
 
+  /// Creates a token model with optional keyword/symbol metadata.
   const TokenModel({
     this.isKeyword = false,
     this.isSymbol = false,

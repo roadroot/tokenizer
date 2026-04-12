@@ -7,6 +7,7 @@ class TokenAlternatives extends HasTokenizeStart {
   /// Available alternatives.
   final List<TokenBase> alternatives;
 
+  /// Creates an alternatives model with candidate [alternatives].
   const TokenAlternatives(String name, this.alternatives) : super(name: name);
 
   @override

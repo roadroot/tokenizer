@@ -1,6 +1,18 @@
 import 'package:test/test.dart';
 import 'package:tokenizer_parser/tokenizer_parser.dart';
 
+class _EmptyStart extends HasTokenizeStart {
+  const _EmptyStart() : super(name: 'empty-start');
+
+  @override
+  bool get isEmpty => false;
+
+  @override
+  (List<Token>, List<Token>)? tokenizeStart(List<Token> inputTokens) {
+    return ([], inputTokens);
+  }
+}
+
 void main() {
   group('Input', () {
     test('value semantics and escaped toString', () {
@@ -114,6 +126,65 @@ void main() {
       expect(result, isNotNull);
       expect(result!.$1.single.model, id);
       expect(result.$2, isEmpty);
+    });
+
+    test('TokenSequence returns null when trailing token missing', () {
+      const sequence = TokenSequence('id-colon', [id, colon]);
+      const tokens = [
+        Token(
+          model: id,
+          value: 'name',
+          startLine: 0,
+          endLine: 0,
+          startColumn: 0,
+          endColumn: 4,
+        ),
+      ];
+
+      expect(sequence.tokenizeStart(tokens), isNull);
+    });
+
+    test('TokenAlternatives empty model short-circuits to no-op', () {
+      const alternatives = TokenAlternatives('choice', [
+        LiteralModel(name: 'empty', pattern: ''),
+        id,
+      ]);
+      const tokens = [
+        Token(
+          model: id,
+          value: 'abc',
+          startLine: 0,
+          endLine: 0,
+          startColumn: 0,
+          endColumn: 3,
+        ),
+      ];
+
+      final result = alternatives.tokenizeStart(tokens);
+      expect(result, isNotNull);
+      expect(result!.$1, isEmpty);
+      expect(result.$2, tokens);
+    });
+  });
+
+  group('NonLiteralModel edge cases', () {
+    test('tokenizeStart throws when sequence creates empty token list', () {
+      const model = NonLiteralModel(name: 'invalid', sequence: _EmptyStart());
+      const input = [
+        Token(
+          model: LiteralModel(name: 'id', pattern: r'[a-z]+'),
+          value: 'x',
+          startLine: 0,
+          endLine: 0,
+          startColumn: 0,
+          endColumn: 1,
+        ),
+      ];
+
+      expect(
+        () => model.tokenizeStart(input),
+        throwsA(isA<Exception>()),
+      );
     });
   });
 }

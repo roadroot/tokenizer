@@ -7,6 +7,7 @@ import 'package:tokenizer_parser/src/token_model/token_model.dart';
 
 /// Utility entry point for tokenizing input strings and files.
 abstract class Tokenizer {
+  /// Static-only utility class; do not instantiate.
   /// Tokenizes [input] using [lang] models.
   ///
   /// Returns a record with:

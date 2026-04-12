@@ -7,6 +7,7 @@ class LiteralModel extends TokenModel implements HasTokenizeLiteral {
   /// Regex pattern used to find token occurrences.
   final String pattern;
 
+  /// Creates a regex-backed literal token model.
   const LiteralModel({
     required this.pattern,
     required super.name,

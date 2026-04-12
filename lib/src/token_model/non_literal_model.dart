@@ -8,6 +8,7 @@ class NonLiteralModel extends TokenModel
   /// Composition strategy used to match token sequences.
   final HasTokenizeStart sequence;
 
+  /// Creates a model that composes tokens using [sequence].
   const NonLiteralModel({
     required this.sequence,
     required super.name,
