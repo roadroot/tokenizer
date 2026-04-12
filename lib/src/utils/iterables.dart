@@ -1,3 +1,4 @@
+/// Deep equality for iterable structures.
 bool equal(Iterable<Object>? o1, Iterable<Object>? o2) {
   if (o1 == null) {
     return o1 == o2;
@@ -22,8 +23,10 @@ bool equal(Iterable<Object>? o1, Iterable<Object>? o2) {
   return true;
 }
 
+/// Negated [equal] helper.
 bool notEqual(Iterable<Object>? o1, Iterable<Object>? o2) => !equal(o1, o2);
 
+/// Deep hash for iterable structures.
 int hash(Iterable<Object> o) {
   int hashCode = 0;
   for (var element in o) {

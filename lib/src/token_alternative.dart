@@ -2,7 +2,9 @@ import 'package:tokenizer_parser/src/token.dart';
 import 'package:tokenizer_parser/src/token_model/has_tokenize.dart';
 import 'package:tokenizer_parser/src/token_model/token_base.dart';
 
+/// A choice composition where the first matching alternative is selected.
 class TokenAlternatives extends HasTokenizeStart {
+  /// Available alternatives.
   final List<TokenBase> alternatives;
 
   const TokenAlternatives(String name, this.alternatives) : super(name: name);

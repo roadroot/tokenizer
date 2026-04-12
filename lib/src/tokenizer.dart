@@ -5,7 +5,13 @@ import 'package:tokenizer_parser/src/token_model/literal_model.dart';
 import 'package:tokenizer_parser/src/token_model/non_literal_model.dart';
 import 'package:tokenizer_parser/src/token_model/token_model.dart';
 
+/// Utility entry point for tokenizing input strings and files.
 abstract class Tokenizer {
+  /// Tokenizes [input] using [lang] models.
+  ///
+  /// Returns a record with:
+  /// 1. the created token list
+  /// 2. the remaining unmatched input segments
   static (List<Token>, List<Input>) tokenize(
       String input, List<TokenModel> lang,
       [List<TokenModel>? ignore]) {
@@ -27,6 +33,7 @@ abstract class Tokenizer {
     return (tokens, remainingSegments);
   }
 
+  /// Reads file at [path] and tokenizes its content.
   static (List<Token>, List<Input>) tokenizeFile(
       String path, List<TokenModel> lang,
       [List<TokenModel>? ignore]) {

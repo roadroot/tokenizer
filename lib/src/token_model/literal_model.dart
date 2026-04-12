@@ -2,7 +2,9 @@ import 'package:tokenizer_parser/src/token.dart';
 import 'package:tokenizer_parser/src/token_model/has_tokenize.dart';
 import 'package:tokenizer_parser/src/token_model/token_model.dart';
 
+/// A regex-backed literal token model.
 class LiteralModel extends TokenModel implements HasTokenizeLiteral {
+  /// Regex pattern used to find token occurrences.
   final String pattern;
 
   const LiteralModel({
@@ -30,9 +32,9 @@ class LiteralModel extends TokenModel implements HasTokenizeLiteral {
               segment.input.substring(0, match.start).split('\n');
           final endLines = segment.input.substring(0, match.end).split('\n');
           final lastSegment = remainingSegments.removeLast();
-          final segementOffset = lastSegment.index - segment.index;
+          final segmentOffset = lastSegment.index - segment.index;
           remainingSegments.add(Input(
-            input: lastSegment.input.substring(0, match.start - segementOffset),
+            input: lastSegment.input.substring(0, match.start - segmentOffset),
             line: lastSegment.line,
             column: lastSegment.column,
             index: lastSegment.index,
@@ -50,7 +52,7 @@ class LiteralModel extends TokenModel implements HasTokenizeLiteral {
                 : endLines.last.length,
           ));
           remainingSegments.add(Input(
-            input: lastSegment.input.substring(match.end - segementOffset),
+            input: lastSegment.input.substring(match.end - segmentOffset),
             line: segment.line + endLines.length - 1,
             column: endLines.length == 1
                 ? segment.column + endLines.last.length

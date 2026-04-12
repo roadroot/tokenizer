@@ -2,7 +2,9 @@ import 'package:tokenizer_parser/src/token.dart';
 import 'package:tokenizer_parser/src/token_model/has_tokenize.dart';
 import 'package:tokenizer_parser/src/token_model/token_base.dart';
 
+/// A sequential composition where each element must match in order.
 class TokenSequence extends HasTokenizeStart {
+  /// Sequence to match.
   final List<TokenBase> sequence;
 
   const TokenSequence(String name, this.sequence) : super(name: name);

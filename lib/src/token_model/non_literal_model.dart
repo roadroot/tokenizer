@@ -2,8 +2,10 @@ import 'package:tokenizer_parser/src/token.dart';
 import 'package:tokenizer_parser/src/token_model/has_tokenize.dart';
 import 'package:tokenizer_parser/src/token_model/token_model.dart';
 
+/// A model that composes existing tokens into higher-level tokens.
 class NonLiteralModel extends TokenModel
     implements HasTokenizeNonLiteral, HasTokenizeStart {
+  /// Composition strategy used to match token sequences.
   final HasTokenizeStart sequence;
 
   const NonLiteralModel({

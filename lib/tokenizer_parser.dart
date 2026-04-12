@@ -1,3 +1,8 @@
+/// Tokenizer Parser public API.
+///
+/// This library exposes primitives to define literal and non-literal token
+/// models, compose grammars, and tokenize text or files into structured token
+/// trees.
 library;
 
 export 'src/tokenizer.dart';

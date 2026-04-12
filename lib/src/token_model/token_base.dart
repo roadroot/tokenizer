@@ -1,6 +1,9 @@
+/// Base abstraction for all token descriptors.
 abstract class TokenBase {
+  /// Whether this model matches no content.
   bool get isEmpty;
 
+  /// Human-readable token name.
   final String name;
 
   const TokenBase({required this.name});

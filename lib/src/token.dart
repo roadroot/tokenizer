@@ -1,10 +1,18 @@
 import 'package:tokenizer_parser/src/token_model/token_model.dart';
 import 'package:tokenizer_parser/src/utils/iterables.dart';
 
+/// Represents a raw input segment with source coordinates.
 class Input {
+  /// Segment text.
   final String input;
+
+  /// Zero-based line of the segment start.
   final int line;
+
+  /// Zero-based column of the segment start.
   final int column;
+
+  /// Zero-based absolute character index of the segment start.
   final int index;
 
   Input({
@@ -39,15 +47,30 @@ class Input {
   }
 }
 
+/// A token matched from input based on a [TokenModel].
 class Token implements Comparable<Token> {
+  /// Start line (zero-based).
   final int startLine;
+
+  /// End line (zero-based).
   final int endLine;
+
+  /// Start column (zero-based).
   final int startColumn;
+
+  /// End column (zero-based).
   final int endColumn;
+
+  /// Matched token model.
   final TokenModel model;
+
+  /// Raw token text.
   final String value;
+
+  /// Child tokens for composed/non-literal tokens.
   final List<Token> children;
 
+  /// Character length of [value].
   int get length => value.length;
 
   const Token({
@@ -60,6 +83,7 @@ class Token implements Comparable<Token> {
     this.children = const [],
   });
 
+  /// Builds a composed token from [tokens] as children.
   factory Token.from(TokenModel model, List<Token> tokens) {
     if (tokens.isEmpty) {
       throw ArgumentError('tokens cannot be empty');
